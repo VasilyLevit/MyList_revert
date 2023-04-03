@@ -9,11 +9,17 @@ public class Ex001 {
   public static void main(String[] args) {
 
     List mylist = new List();
-    mylist.addToStart("First");
-    mylist.addToStart("Second");
-    mylist.addToStart("Third");
-    mylist.addToStart("Fourth");
+    mylist.addFirst("First");
+    mylist.addFirst("Second");
+    mylist.addFirst("Third");
+    mylist.addFirst("Fourth");
+    mylist.print();
+    System.out.println();
 
+    System.out.println(mylist.contains("Fourth"));
+    System.out.println();
+
+    mylist.removeFirst();
     mylist.print();
     // System.out.println(mylist.head.value);   
 
@@ -29,16 +35,30 @@ class List {
       System.out.println(currentNode.value);
       currentNode = currentNode.next;  // присваиваем следующую ноду по списку
     }
-
   }
   
-  public void addToStart(String value) {
+  public boolean contains(String string) {
+    Node currentNode = head;
+    while (currentNode != null) {
+      if (currentNode.value.equals(string)) return true;
+      currentNode = currentNode.next;  // присваиваем следующую ноду по списку
+    }
+    return false;
+  }
+
+  public void addFirst(String value) {
     Node node = new Node();
     node.value = value;
     if (head == null) head = node;
     else {
       node.next = head;
       head = node;
+    }
+  }
+
+  public void removeFirst() {
+    if (head != null) {
+      head = head.next;
     }
   }
   
